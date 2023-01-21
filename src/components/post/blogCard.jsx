@@ -11,10 +11,12 @@ const BlogCards = ({ post }) => {
       <h4 className="my-3">{post.title}</h4>
       <p className="my-3">{post.body}</p>
       <div className="flex justify-center my-3 flex-end">
-        <button className="p-3 mx-3 bg-yellow-200 hover:bg-yellow-300">
+        <button className="rounded-xl p-3 mx-3 bg-yellow-200 hover:bg-yellow-300">
           Edit
         </button>
-        <button className="p-3 mx-3 bg-red-200 hover:bg-red-300">Delete</button>
+        <button className="rounded-xl p-3 mx-3 bg-red-200 hover:bg-red-300">
+          Delete
+        </button>
       </div>
     </div>
   );
