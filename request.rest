@@ -1,18 +1,18 @@
 # --------------------User Testing--------------------
-GET https://gorest.co.in/public/v2/users
+GET https://gorest.co.in/public/v1/users?page=1&per_page=100
 ###
 
-GET https://gorest.co.in/public/v2/users/3184
+GET https://gorest.co.in/public/v1/users/3069
 ###
 
-POST https://gorest.co.in/public/v2/users HTTP/1.1
+POST https://gorest.co.in/public/v1/users HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer baab25ae311ca6c3737a36fc87d76b24da71f067d290a965dea6eb07cd04b6de
 
 
 {        
     "name": "tita",
-    "email": "titakawai@gmail.com",
+    "email": "titazahra@gmail.com",
     "gender": "female",
     "status": "active"
 }
@@ -20,11 +20,11 @@ Authorization: Bearer baab25ae311ca6c3737a36fc87d76b24da71f067d290a965dea6eb07cd
 
 ###
 
-DELETE https://gorest.co.in/public/v2/users/3185
+DELETE https://gorest.co.in/public/v1/users/3154
 Authorization: Bearer baab25ae311ca6c3737a36fc87d76b24da71f067d290a965dea6eb07cd04b6de
 ###
 
-PATCH  https://gorest.co.in/public/v2/users/3184 HTTP/1.1
+PATCH  https://gorest.co.in/public/v1/users/3069 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer baab25ae311ca6c3737a36fc87d76b24da71f067d290a965dea6eb07cd04b6de
 

@@ -10,9 +10,10 @@ const UserPage = ({
   setPagData,
   pagNum,
   temp,
+  setEdit,
+  setEditValue,
 }) => {
   const [permData, setPermData] = useState([]);
-  const [edit, setEdit] = useState(false);
 
   useEffect(() => {
     let dummy = [];
@@ -22,7 +23,7 @@ const UserPage = ({
       numDummy++;
     }
     setPermData([...dummy]);
-  });
+  }, []);
 
   const changeInput = (e) => {
     const value = e.target.value;
@@ -30,11 +31,14 @@ const UserPage = ({
   };
 
   const clickSearch = () => {
-    if (search == '') alert('tidak bisa search dalam keadaan kosong');
-    const userSearch = temp.filter((user) =>
-      user.name.toLowerCase().includes(search.toLowerCase())
-    );
-    setPagData(userSearch);
+    if (search == '') {
+      alert('tidak bisa search dalam keadaan kosong');
+    } else {
+      const userSearch = temp.filter((user) =>
+        user.name.toLowerCase().includes(search.toLowerCase())
+      );
+      setPagData(userSearch);
+    }
   };
 
   const cancelSearch = () => {
@@ -45,22 +49,26 @@ const UserPage = ({
     try {
       const b = pagData[pagNum].map((user) => (
         <UserCard
-          edit={edit}
+          setEditValue={setEditValue}
           setEdit={setEdit}
           key={user.id}
           user={user}
           setAddUser={setAddUser}
+          temp={temp}
+          setPagData={setPagData}
         />
       ));
       return b;
     } catch (err) {
       const a = pagData.map((user) => (
         <UserCard
-          edit={edit}
+          setEditValue={setEditValue}
           setEdit={setEdit}
           key={user.id}
           user={user}
           setAddUser={setAddUser}
+          temp={temp}
+          setPagData={setPagData}
         />
       ));
       return a;
@@ -77,16 +85,16 @@ const UserPage = ({
         </Button>
       </div>
       <div className="my-8 w-1/2 p-4 mx-auto">
-        <div className="flex justify-center">
+        <div className="flex w-96 justify-center mx-auto">
           <Input
-            className="my-8 p-2 mx-2 w-72"
+            className="my-8 p-2 mx-1 w-72"
             variant="standard"
             placeholder="search user.."
             onChange={changeInput}
           />
           <button
             onClick={clickSearch}
-            className="my-8 mx-2 w-24 rounded-xl p-2 bg-sky-200 hover:bg-sky-300"
+            className="my-8 mx-1 w-24 rounded-xl p-2 bg-sky-200 hover:bg-sky-300"
           >
             Search
           </button>

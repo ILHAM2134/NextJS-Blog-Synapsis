@@ -2,7 +2,16 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { Button } from '@material-tailwind/react';
 
-const AddUserPage = ({ setAddUser, pagData, setPagData }) => {
+const AddUserPage = ({
+  setAddUser,
+  pagData,
+  setPagData,
+  edit,
+  setEdit,
+  editValue,
+  setEditValue,
+  temp,
+}) => {
   const initialValues = {
     name: '',
     email: '',
@@ -10,30 +19,57 @@ const AddUserPage = ({ setAddUser, pagData, setPagData }) => {
     status: '',
   };
   const onSubmit = async (data) => {
-    const res = await window.fetch('https://gorest.co.in/public/v1/users', {
-      method: 'POST',
-      credentials: 'same-origin',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization:
-          'Bearer baab25ae311ca6c3737a36fc87d76b24da71f067d290a965dea6eb07cd04b6de',
-      },
-      body: JSON.stringify(data),
-    });
+    if (editValue != null) {
+      const res = await window.fetch(
+        `https://gorest.co.in/public/v1/users/${editValue.id}`,
+        {
+          method: 'PATCH',
+          credentials: 'same-origin',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization:
+              'Bearer baab25ae311ca6c3737a36fc87d76b24da71f067d290a965dea6eb07cd04b6de',
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
-    if (pagData[0].length >= 20) {
-      pagData.push([data]);
+      const arr = temp;
+      const index = arr.findIndex((item) => item.name == editValue.name);
+      arr.splice(index, 1);
+      arr.push(data);
+
+      const dummy = [];
+      let numDummy = 1;
+      for (let i = 0; i < arr.length; i += 20) {
+        dummy.push(arr.slice(i, 20 * numDummy));
+        numDummy++;
+      }
+      setPagData([...dummy]);
     } else {
-      pagData[0].push(data);
+      const res = await window.fetch('https://gorest.co.in/public/v1/users', {
+        method: 'POST',
+        credentials: 'same-origin',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization:
+            'Bearer baab25ae311ca6c3737a36fc87d76b24da71f067d290a965dea6eb07cd04b6de',
+        },
+        body: JSON.stringify(data),
+      });
+      if (pagData[0].length >= 20) {
+        pagData.push([data]);
+      } else {
+        pagData[0].push(data);
+      }
+      setPagData([...pagData]);
     }
 
-    setPagData([...pagData]);
-
-    console.log(pagData);
-    console.log(res);
-
     setAddUser(false);
+    setEdit(false);
+    setEditValue(null);
   };
   const validationSchema = Yup.object().shape({
     name: Yup.string().min(3).max(75).required('name is required field'),
@@ -46,9 +82,13 @@ const AddUserPage = ({ setAddUser, pagData, setPagData }) => {
     <div className="mx-auto text-center my-10">
       <Button
         className="ring-1 ring-gray-600 px-5 py-2 rounded-xl mx-auto hover:bg-gray-300"
-        onClick={() => setAddUser(false)}
+        onClick={() => {
+          setAddUser(false);
+          setEdit(false);
+          setEditValue(null);
+        }}
       >
-        Back to User Page
+        {edit ? 'Cancel Edit' : 'Back to User Page'}
       </Button>
 
       <Formik
@@ -66,7 +106,7 @@ const AddUserPage = ({ setAddUser, pagData, setPagData }) => {
           <Field
             id="inputProduct"
             name="name"
-            placeholder={'input your name...'}
+            placeholder={editValue ? editValue.name : 'input your name...'}
             autoComplete="on"
             className="m-1 mx-auto mb-5 w-4/5 rounded-2xl border-[1px] border-blue-400 px-2 py-3 text-black"
           />
@@ -80,7 +120,7 @@ const AddUserPage = ({ setAddUser, pagData, setPagData }) => {
           <Field
             id="inputDescription"
             name="email"
-            placeholder={'input your email...'}
+            placeholder={editValue ? editValue.email : 'input your email...'}
             autoComplete="on"
             className="m-1 mx-auto mb-5 w-4/5 rounded-2xl border-[1px] border-blue-400 px-2 py-3 text-black"
           />
@@ -94,7 +134,7 @@ const AddUserPage = ({ setAddUser, pagData, setPagData }) => {
           <Field
             id="inputProduct"
             name="gender"
-            placeholder={'input your gender..'}
+            placeholder={editValue ? editValue.gender : 'input your gender..'}
             autoComplete="on"
             className="m-1 mx-auto mb-5 w-4/5 rounded-2xl border-[1px] border-blue-400 px-2 py-3 text-black"
           />
@@ -108,7 +148,7 @@ const AddUserPage = ({ setAddUser, pagData, setPagData }) => {
           <Field
             id="inputPlace"
             name="status"
-            placeholder={'input your status..'}
+            placeholder={editValue ? editValue.status : 'input your status..'}
             autoComplete="on"
             className="m-1 mx-auto mb-5 w-4/5 rounded-2xl border-[1px] border-blue-400 px-2 py-3 text-black"
           />
@@ -119,8 +159,7 @@ const AddUserPage = ({ setAddUser, pagData, setPagData }) => {
             className="m-1 mx-auto mb-5 mt-5 w-4/5 rounded-2xl border-[1px] bg-blue-400 px-2 py-3 text-black"
             type="submit"
           >
-            {/* {edit ? 'Edit Product' : 'Add Product'} */}
-            Add Product
+            {edit ? 'Edit Product' : 'Add Product'}
           </Button>
         </Form>
       </Formik>

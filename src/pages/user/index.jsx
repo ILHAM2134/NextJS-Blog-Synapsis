@@ -9,6 +9,8 @@ const User = ({ response }) => {
   const [addUser, setAddUser] = useState(false);
   const [pagData, setPagData] = useState([]);
   const [pagNum, setPagNum] = useState(0);
+  const [edit, setEdit] = useState(false);
+  const [editValue, setEditValue] = useState(null);
 
   useEffect(() => {
     setTemp(response);
@@ -31,6 +33,11 @@ const User = ({ response }) => {
           setAddUser={setAddUser}
           pagData={pagData}
           setPagData={setPagData}
+          edit={edit}
+          setEdit={setEdit}
+          editValue={editValue}
+          setEditValue={setEditValue}
+          temp={temp}
         />
       ) : (
         <UserPage
@@ -41,6 +48,8 @@ const User = ({ response }) => {
           setPagData={setPagData}
           pagNum={pagNum}
           temp={temp}
+          setEdit={setEdit}
+          setEditValue={setEditValue}
         />
       )}
       <Pagination pagData={pagData} setPagNum={setPagNum} />;
