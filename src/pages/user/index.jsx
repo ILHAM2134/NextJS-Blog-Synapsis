@@ -71,20 +71,3 @@ export async function getStaticProps() {
     },
   };
 }
-
-// {
-//   "id": 457,
-//   "user_id": 917,
-//   "title": "Volva defendo tenax cilicium amplitudo aspicio odio ustilo.",
-//   "body": "Via careo somnus. Adicio vilitas vomer. Architecto labore fugiat. Varius nostrum voluptas. Consequatur appositus attero. Charisma compono bonus. Rerum carcer convoco. Comminor sursum delego. Bellicus aduro coaegresco. Advoco accedo calco. Omnis ademptio nulla. Laudantium pax vultuosus. Conforto neque vorax. Curis accendo aestivus. Substantia vultuosus spiritus."
-// }
-
-// [
-//   {
-//     "id": 450,
-//     "post_id": 457,
-//     "name": "Vijay Embranthiri",
-//     "email": "vijay_embranthiri@von-lemke.com",
-//     "body": "Ipsa consequatur quaerat. Sunt quo omnis. Itaque animi sit. Sint voluptas voluptatem."
-//   }
-// ]

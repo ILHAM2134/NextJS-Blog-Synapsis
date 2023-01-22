@@ -32,11 +32,11 @@ const Post = () => {
 
   return (
     <div className="my-8 flex justify-center p-5">
-      <div className="mx-2 my-5">
+      <div className="my-6 md:my-10 w-10/12 md:w-1/3 mx-auto md:mx-5 bg-gray-100 hover:bg-gray-200 p-5 rounded-2xl">
         <h6>{detailBlog.title}</h6>
         <p>{detailBlog.body}</p>
       </div>
-      <div className="mx-2 my-5">
+      <div className="my-6 md:my-10 w-10/12 md:w-1/3 mx-auto md:mx-5 bg-gray-100 hover:bg-gray-200 p-5 rounded-2xl">
         {commentBlog.map((comment) => (
           <div key={comment.id}>
             <h6>{comment.name}</h6>
@@ -49,16 +49,3 @@ const Post = () => {
 };
 
 export default Post;
-
-// export async function getServerSideProps({ req, res }) {
-//   const query = req.query;
-//   const resp = await fetch(`https://gorest.co.in/public/v2/posts/457/comments`);
-//   const response = await resp.json();
-
-//   return {
-//     props: {
-//       query,
-//       response,
-//     },
-//   };
-// }
