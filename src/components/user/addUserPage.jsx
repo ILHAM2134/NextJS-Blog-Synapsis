@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { Button } from '@material-tailwind/react';
 
-const AddUserPage = ({ setAddUser }) => {
+const AddUserPage = ({ setAddUser, pagData, setPagData }) => {
   const initialValues = {
     name: '',
     email: '',
@@ -22,7 +22,18 @@ const AddUserPage = ({ setAddUser }) => {
       body: JSON.stringify(data),
     });
 
+    if (pagData[0].length >= 20) {
+      pagData.push([data]);
+    } else {
+      pagData[0].push(data);
+    }
+
+    setPagData([...pagData]);
+
+    console.log(pagData);
     console.log(res);
+
+    setAddUser(false);
   };
   const validationSchema = Yup.object().shape({
     name: Yup.string().min(3).max(75).required('name is required field'),

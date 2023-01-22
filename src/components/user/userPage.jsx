@@ -10,15 +10,23 @@ const UserPage = ({
   setPagData,
   pagNum,
   temp,
-  permData,
 }) => {
+  const [permData, setPermData] = useState([]);
+  const [edit, setEdit] = useState(false);
+
+  useEffect(() => {
+    let dummy = [];
+    let numDummy = 1;
+    for (let i = 0; i < temp.length; i += 20) {
+      dummy.push(temp.slice(i, 20 * numDummy));
+      numDummy++;
+    }
+    setPermData([...dummy]);
+  });
+
   const changeInput = (e) => {
     const value = e.target.value;
     setSearch(value);
-
-    if (search.length <= 2) {
-      setPagData(permData);
-    }
   };
 
   const clickSearch = () => {
@@ -29,14 +37,32 @@ const UserPage = ({
     setPagData(userSearch);
   };
 
+  const cancelSearch = () => {
+    setPagData([...permData]);
+  };
+
   const loop = () => {
     try {
       const b = pagData[pagNum].map((user) => (
-        <UserCard key={user.id} user={user} />
+        <UserCard
+          edit={edit}
+          setEdit={setEdit}
+          key={user.id}
+          user={user}
+          setAddUser={setAddUser}
+        />
       ));
       return b;
     } catch (err) {
-      const a = pagData.map((user) => <UserCard key={user.id} user={user} />);
+      const a = pagData.map((user) => (
+        <UserCard
+          edit={edit}
+          setEdit={setEdit}
+          key={user.id}
+          user={user}
+          setAddUser={setAddUser}
+        />
+      ));
       return a;
     }
   };
@@ -50,10 +76,10 @@ const UserPage = ({
           Add User
         </Button>
       </div>
-      <div className="my-8 w-96 mx-auto">
-        <div className="flex w-full">
+      <div className="my-8 w-1/2 p-4 mx-auto">
+        <div className="flex justify-center">
           <Input
-            className="my-8 p-2 w-60 mx-2"
+            className="my-8 p-2 mx-2 w-72"
             variant="standard"
             placeholder="search user.."
             onChange={changeInput}
@@ -63,6 +89,12 @@ const UserPage = ({
             className="my-8 mx-2 w-24 rounded-xl p-2 bg-sky-200 hover:bg-sky-300"
           >
             Search
+          </button>
+          <button
+            onClick={cancelSearch}
+            className="my-8 mx-1 w-24 rounded-xl p-2 bg-red-200 hover:bg-red-300"
+          >
+            cancel
           </button>
         </div>
         <p>{search ? `you search : ${search}` : ''}</p>

@@ -4,7 +4,6 @@ import UserPage from '@/components/user/userPage';
 import AddUserPage from '@/components/user/addUserPage';
 
 const User = ({ response }) => {
-  const [permData, setPermData] = useState([]);
   const [temp, setTemp] = useState([]);
   const [search, setSearch] = useState('');
   const [addUser, setAddUser] = useState(false);
@@ -23,13 +22,16 @@ const User = ({ response }) => {
       numDummy++;
     }
     setPagData([...dummy]);
-    setPermData([...pagData]);
   }, [temp]);
 
   return (
     <div>
       {addUser ? (
-        <AddUserPage setAddUser={setAddUser} />
+        <AddUserPage
+          setAddUser={setAddUser}
+          pagData={pagData}
+          setPagData={setPagData}
+        />
       ) : (
         <UserPage
           setAddUser={setAddUser}
@@ -39,7 +41,6 @@ const User = ({ response }) => {
           setPagData={setPagData}
           pagNum={pagNum}
           temp={temp}
-          permData={permData}
         />
       )}
       <Pagination pagData={pagData} setPagNum={setPagNum} />;

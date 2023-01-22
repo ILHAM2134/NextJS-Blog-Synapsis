@@ -3,6 +3,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 
 export default function Pagination({ pagData, setPagNum }) {
   const [current, setCurrent] = useState(0);
+  const [recent, setRecent] = useState(0);
 
   const pag = pagData.length;
   let arr = [];
@@ -12,8 +13,24 @@ export default function Pagination({ pagData, setPagNum }) {
 
   const handleClick = (item) => {
     setPagNum(item);
-
+    setRecent(item);
     setCurrent(item);
+  };
+
+  const previousClick = () => {
+    if (recent != 0) {
+      setPagNum(recent - 1);
+      setRecent(recent - 1);
+      setCurrent(recent - 1);
+    }
+  };
+
+  const nextClick = () => {
+    if (recent < pag - 1) {
+      setPagNum(recent + 1);
+      setRecent(recent + 1);
+      setCurrent(recent + 1);
+    }
   };
 
   const currentClass =
@@ -25,31 +42,31 @@ export default function Pagination({ pagData, setPagNum }) {
   return (
     <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
       <div className="flex flex-1 justify-between md:hidden">
-        <a
-          href="#"
-          className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+        <div
+          onClick={previousClick}
+          className="cursor-pointer relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
         >
           Previous
-        </a>
-        <a
-          href="#"
-          className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+        </div>
+        <div
+          onClick={nextClick}
+          className="cursor-pointer relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
         >
           Next
-        </a>
+        </div>
       </div>
       <div className="hidden md:flex md:flex-1 md:items-center justify-center">
         <nav
           className="isolate inline-flex -space-x-px rounded-md shadow-sm"
           aria-label="Pagination"
         >
-          <a
-            href="#"
-            className="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
+          <div
+            onClick={previousClick}
+            className="cursor-pointer relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
           >
             <span className="sr-only">Previous</span>
             <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
-          </a>
+          </div>
 
           {arr.map((item) => (
             <div
@@ -60,13 +77,13 @@ export default function Pagination({ pagData, setPagNum }) {
               {item}
             </div>
           ))}
-          <a
-            href="#"
-            className="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
+          <div
+            onClick={nextClick}
+            className="cursor-pointer relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
           >
             <span className="sr-only">Next</span>
             <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
-          </a>
+          </div>
         </nav>
       </div>
     </div>

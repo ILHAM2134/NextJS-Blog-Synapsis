@@ -1,10 +1,11 @@
-const UserCard = ({ user }) => {
-  const handleEdit = (id) => {
-    alert(`edit ${id}`);
+const UserCard = ({ user, setAddUser, setEdit }) => {
+  const handleEdit = (user) => {
+    setAddUser(true);
+    setEdit(true);
   };
 
-  const handleDelete = (id) => {
-    alert(`delete ${id}`);
+  const handleDelete = (name) => {
+    alert(`delete ${name}`);
   };
 
   return (
@@ -16,13 +17,13 @@ const UserCard = ({ user }) => {
       <p className="my-3">{user.email}</p>
       <div className="flex justify-center my-3 flex-end">
         <button
-          onClick={() => handleEdit(user.id)}
+          onClick={() => handleEdit(user)}
           className="rounded-xl p-3 mx-3 bg-yellow-200 hover:bg-yellow-300"
         >
           Edit
         </button>
         <button
-          onClick={() => handleDelete(user.id)}
+          onClick={() => handleDelete(user.name)}
           className="rounded-xl p-3 mx-3 bg-red-200 hover:bg-red-300"
         >
           Delete
