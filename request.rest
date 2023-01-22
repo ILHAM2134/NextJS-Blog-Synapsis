@@ -17,7 +17,12 @@ Authorization: Bearer baab25ae311ca6c3737a36fc87d76b24da71f067d290a965dea6eb07cd
     "status": "active"
 }
 
-
+if (data.overview.length > 130) {
+    caption = data.overview.substring(0, 150) + `...`;
+} else {
+	caption = data.overview;
+}
+    
 ###
 
 DELETE https://gorest.co.in/public/v1/users/3154
