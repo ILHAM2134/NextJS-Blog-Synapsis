@@ -1,4 +1,11 @@
-const UserCard = ({ user, setAddUser, setEdit, setEditValue, temp, setPagData }) => {
+const UserCard = ({
+  user,
+  setAddUser,
+  setEdit,
+  setEditValue,
+  temp,
+  setPagData,
+}) => {
   const handleEdit = (user) => {
     setAddUser(true);
     setEdit(true);
@@ -19,8 +26,6 @@ const UserCard = ({ user, setAddUser, setEdit, setEditValue, temp, setPagData })
         },
       }
     );
-
-    console.log(res);
 
     const arr = temp;
     const index = arr.findIndex((item) => item.name == user.name);

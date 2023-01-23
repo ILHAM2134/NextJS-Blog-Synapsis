@@ -4,17 +4,13 @@ import UserPage from '@/components/user/userPage';
 import AddUserPage from '@/components/user/addUserPage';
 
 const User = ({ response }) => {
-  const [temp, setTemp] = useState([]);
+  const [temp, setTemp] = useState(response);
   const [search, setSearch] = useState('');
   const [addUser, setAddUser] = useState(false);
   const [pagData, setPagData] = useState([]);
   const [pagNum, setPagNum] = useState(0);
   const [edit, setEdit] = useState(false);
   const [editValue, setEditValue] = useState(null);
-
-  useEffect(() => {
-    setTemp(response);
-  }, []);
 
   useEffect(() => {
     let dummy = [];

@@ -4,13 +4,13 @@ import Link from 'next/link';
 export default function Jumbotron() {
   return (
     <div className={styles.jumbotron}>
-      <main>
+      <main className="min-h-screen">
         <div className="relative px-6 lg:px-8">
           <div className="mx-auto max-w-3xl pt-20 pb-32 sm:pt-48 sm:pb-40">
             <div className="hidden sm:mb-8 sm:flex sm:justify-center">
               <div className="relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-white-900/10 hover:ring-gray-900/20 hover:bg-indigo-700 hover:text-white">
                 <span className="text-gray-100">
-                  Announcing our next round of funding.
+                  Be Our Contributor. 
                   <Link href="/" className="font-semibold text-indigo-100">
                     <span className="absolute inset-0" aria-hidden="true" />
                     Read more <span aria-hidden="true">&rarr;</span>
@@ -50,12 +50,14 @@ export default function Jumbotron() {
             </div>
           </div>
         </div>
-        <Link
-          className="text-white text-italic mb-3 text-end"
-          href="https://www.pexels.com/pixabay"
-        >
-          Img by Pexels/Pixabay
-        </Link>
+        <div className="text-center">
+          <Link
+            className="text-white text-italic mb-3"
+            href="https://www.pexels.com/pixabay"
+          >
+           <p> background img from Pexels/Pixabay </p>
+          </Link>
+        </div>
       </main>
     </div>
   );
