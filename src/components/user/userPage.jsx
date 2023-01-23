@@ -78,7 +78,7 @@ const UserPage = ({
     <div className="my-10 text-center">
       <div>
         <Button
-          className="ring-1 ring-gray-600 px-5 py-2 rounded-xl mx-auto hover:bg-gray-300"
+          className="ring-1 ring-gray-600 px-5 text-gray-700 py-2 rounded-xl mx-auto hover:bg-gray-700 hover:text-gray-100 "
           onClick={() => setAddUser(true)}
         >
           Add User

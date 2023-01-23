@@ -81,7 +81,7 @@ const AddUserPage = ({
   return (
     <div className="mx-auto text-center my-10">
       <Button
-        className="ring-1 ring-gray-600 px-5 py-2 rounded-xl mx-auto hover:bg-gray-300"
+        className="ring-1 ring-gray-600 px-5 text-gray-700 py-2 rounded-xl mx-auto hover:bg-gray-700 hover:text-gray-100 "
         onClick={() => {
           setAddUser(false);
           setEdit(false);
@@ -156,10 +156,10 @@ const AddUserPage = ({
           <hr className="mx-auto my-5 w-4/5 bg-black" />
 
           <Button
-            className="m-1 mx-auto mb-5 mt-5 w-4/5 rounded-2xl border-[1px] bg-blue-400 px-2 py-3 text-black"
+            className="ring-1 ring-gray-600 px-5 text-gray-100 py-2 rounded-xl mx-auto bg-gray-700 hover:bg-gray-100 hover:text-gray-700 "
             type="submit"
           >
-            {edit ? 'Edit Product' : 'Add Product'}
+            {edit ? 'Edit User' : 'Add User'}
           </Button>
         </Form>
       </Formik>

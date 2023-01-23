@@ -52,9 +52,9 @@ export default function Jumbotron() {
         </div>
         <Link
           className="text-white text-italic mb-3 text-end"
-          href="https://www.vecteezy.com/free-vector/secure"
+          href="https://www.pexels.com/pixabay"
         >
-          Secure Vectors by Vecteezy
+          Img by Pexels/Pixabay
         </Link>
       </main>
     </div>
