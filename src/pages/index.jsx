@@ -1,15 +1,14 @@
-import Head from 'next/head';
-import Image from 'next/image';
 import styles from '@/styles/Home.module.css';
+import Jumbotron from '../components/home/Jumbotron.jsx';
 
 export default function Home() {
   return (
-    <>
+    <div>
       <main className={styles.main}>
         <div className="flex flex-col justify-center">
-          <h1 className="my-16 text-center">This is homepage.</h1>
+          <Jumbotron />
         </div>
       </main>
-    </>
+    </div>
   );
 }
