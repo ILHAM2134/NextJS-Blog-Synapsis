@@ -31,7 +31,7 @@ const Post = () => {
   console.log(commentBlog);
 
   return (
-    <div className="my-8 flex justify-center p-5">
+    <div className="my-8 flex flex-col md:flex-row justify-center p-5">
       <div className="my-6 md:my-10 w-10/12 md:w-1/3 mx-auto md:mx-5 bg-gray-100 hover:bg-gray-200 p-5 rounded-2xl">
         <h5 className="mt-2 mb-5 font-bold">Blog Detail</h5>
         <h6 className="mb-1 mt-8 font-semibold">{detailBlog.title}</h6>
