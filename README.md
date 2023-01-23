@@ -7,9 +7,10 @@ this is web-based blog app that use https://gorest.co.in/ API data that can view
 ## How to Use
 
 - theres 3 page on this app, such as home page (/), blog page (/blog), and user page (/user)
+
 - blog page (/blog) contain lists of blog, if one blog clicked it will Link to (/blog/:blogID) and serve with blog full content and comment
 
--user page (/user) contain list of user, visitor can do CRUD on user's data
+- user page (/user) contain list of user, visitor can do CRUD on user's data
 
 ## How to Run
 
